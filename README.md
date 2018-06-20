@@ -64,7 +64,9 @@ Your MN started!!
 
 ## 3. Masternode Upgrades
 
-1. Paste this command:
+1. Log in as root: ```sudo su -```
+
+2. Paste this command:
 ```
 bash <( curl https://raw.githubusercontent.com/Dellrodar/MNSetUp-scrypt-NEW/master/trtt-update.sh )
 
