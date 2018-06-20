@@ -23,8 +23,9 @@ ufw allow ssh
 ufw allow 30001/tcp
 yes | ufw enable
 
-su tritt
-trittiumd -daemon
+su -c "trittiumd" tritt
 
 echo "To verify you blockchain is sync'd run:"
-echo "watch trittium-cli getblockcount"
+echo "su -l -c "trittium-cli getblockcount" tritt"
+echo "To verify masternode is started:"
+echo "su -c "/usr/local/bin/trittium-cli masternode status" tritt"
