@@ -54,7 +54,7 @@ bash <( curl https://raw.githubusercontent.com/Dellrodar/MNSetUp-scrypt-NEW/mast
 1. Open 'masternode.conf' file to edit.
 1. Add new string from "string for masternode.conf"
    It will look like 
-   MN1 IP:30001 masternodeprivkey [25k desposit transaction id. 'masternode outputs'] [50k desposit transaction index. 'masternode outputs']
+   MN1 IP:30001 masternodeprivkey [50k desposit transaction id. 'masternode outputs'] [50k desposit transaction index. 'masternode outputs']
    Past your transaction id. and transaction index from step 2.1. For example 629dc27b721f57c97550868cac9f7e41049d12cce8ac344732b7f74a9fc81815  0.  
    Save file. Restart wallet. You must wait 15 confirmations of collateral transaction. Then go to tab Masternodes and push 'Start missing' button.
 
