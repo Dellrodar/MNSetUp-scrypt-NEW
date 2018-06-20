@@ -42,7 +42,7 @@ Also you can use [Vultr](https://www.vultr.com) or [DigitalOcean](https://digita
 1. Start putty and login as root user. (Root password and server ip address is in VPS overview tab)
 1. Paste this command and answer the questions:
 ```
-bash <( curl https://raw.githubusercontent.com/Trittium/MNSetUp-scrypt-NEW/master/install.sh )
+bash <( curl https://raw.githubusercontent.com/Dellrodar/MNSetUp-scrypt-NEW/master/install.sh )
 
 ```
 4.  After script finished , copy "string for masternode.conf".
