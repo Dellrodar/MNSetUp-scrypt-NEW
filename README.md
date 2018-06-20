@@ -10,8 +10,8 @@ Use this instructions to install the wallet,  and setup single masternode on Win
 	* [2.2 VPS setup](#22-vps-setup)
 	* [2.3 Automatic Masternode Setup](#23-automatic-masternode-setup)
 	* [2.4 Add masternode on the desktop wallet](#24-add-masternode-on-the-desktop-wallet)
-* [3. FAQ](#3-faq)
-* [4. The last and the most important step](#4-the-last-and-the-most-important-step)
+* [4. FAQ](#4-faq)
+* [5. The last and the most important step](#4-the-last-and-the-most-important-step)
 
 ## 1. Desktop Wallet Preparation
 
@@ -60,9 +60,16 @@ bash <( curl https://raw.githubusercontent.com/Dellrodar/MNSetUp-scrypt-NEW/mast
 
 Congratulation!!
 Your MN started!!   
-	
 
-## 3. FAQ
+## 3. Masternode Upgrades
+
+1. Paste this command:
+```
+bash <( curl https://raw.githubusercontent.com/Dellrodar/MNSetUp-scrypt-NEW/master/trtt-update.sh )
+
+```
+
+## 4. FAQ
 
 
 1. How to get masternode profit?
