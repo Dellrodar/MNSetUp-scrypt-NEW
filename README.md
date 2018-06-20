@@ -10,6 +10,7 @@ Use this instructions to install the wallet,  and setup single masternode on Win
 	* [2.2 VPS setup](#22-vps-setup)
 	* [2.3 Automatic Masternode Setup](#23-automatic-masternode-setup)
 	* [2.4 Add masternode on the desktop wallet](#24-add-masternode-on-the-desktop-wallet)
+* [3. Masternode Upgrades](#3-masternode-upgrades)
 * [4. FAQ](#4-faq)
 * [5. The last and the most important step](#4-the-last-and-the-most-important-step)
 
