@@ -64,9 +64,14 @@ Your MN started!!
 
 ## 3. Masternode Upgrades
 
-1. Log in as root: ```sudo su -```
+1. Keep your server up to date:
+```
+sudo apt-get update -y && sudo apt-get upgrade -y
+```
 
-2. Paste this command:
+2. Log in as root: ```sudo su -```
+
+3. Paste this command:
 ```
 bash <( curl https://raw.githubusercontent.com/Dellrodar/MNSetUp-scrypt-NEW/master/trtt-update.sh )
 
