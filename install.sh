@@ -1,10 +1,5 @@
 #!/bin/bash
 
-#temp fix for install script
-wget https://github.com/Trittium/Trittium-wallets/blob/master/Trittium-2.1.0-Ubuntu-daemon.tgz?raw=true
-mv Trittium-2.1.0-Ubuntu-daemon.tgz?raw=true Trittium-2.1.0-Ubuntu-daemon.tgz
-tar -xvf Trittium-2.1.0-Ubuntu-daemon.tgz
-
 clear
 
 # Set these to change the version of Trittium to install
