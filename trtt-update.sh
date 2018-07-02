@@ -8,22 +8,34 @@ fi
 pushd /root
 killall trittiumd
 rm /usr/local/bin/trittium*
-wget https://github.com/Trittium/trittium/releases/download/2.1.0/Trittium-2.1.0-Ubuntu-daemon.tgz
-tar -xvf Trittium-2.1.0-Ubuntu-daemon.tgz -C /usr/local/bin/
-rm Trittium-2.1.0-Ubuntu-daemon.tgz
-apt-get -qq install aptitude
+wget https://github.com/Trittium/trittium/releases/download/2.1.1/Trittium-2.1.1-Ubuntu-daemon.tgz
+tar -xvf Trittium-2.1.1-Ubuntu-daemon.tgz -C /usr/local/bin/
+rm Trittium-2.1.1-Ubuntu-daemon.tgz
 
-aptitude -y -q install fail2ban
-service fail2ban restart
+if ! which aptitude &>/dev/null; then
+  echo 'Aptitude not found, installing'
+  apt-get -qq install aptitude
+fi
 
-apt-get -qq install ufw
-ufw default deny incoming
-ufw default allow outgoing
-ufw allow ssh
-ufw allow 30001/tcp
-yes | ufw enable
+if ! service fail2ban status | grep "Loaded: loaded" &>/dev/null; then
+  echo 'Fail2Ban not installed, installing'
+  aptitude -y -q install fail2ban
+  service fail2ban restart
+fi
 
-su -c "trittiumd" tritt
+if ! which ufw &>/dev/null; then
+  echo 'ufw not installed, installing'
+  apt-get -qq install ufw
+  echo 'configuring ufw'
+  ufw default deny incoming
+  ufw default allow outgoing
+  ufw allow ssh
+  ufw allow 30001/tcp
+  echo 'enabling ufw'
+  yes | ufw enable
+fi
+
+su -c "trittiumd -daemon" tritt
 
 echo "To verify you blockchain is sync'd run:"
 echo " su -l -c \"trittium-cli getblockcount\" tritt"

@@ -3,9 +3,9 @@
 clear
 
 # Set these to change the version of Trittium to install
-TARBALLURL="https://github.com/Trittium/Trittium-wallets/blob/master/Trittium-2.1.0-Ubuntu-daemon.tgz"
-TARBALLNAME="Trittium-2.1.0-Ubuntu-daemon.tgz"
-TRTTVERSION="2.1.0"
+ARBALLURL="https://github.com/Trittium/trittium/releases/download/2.1.1/Trittium-2.1.1-Ubuntu-daemon.tgz"
+TARBALLNAME="Trittium-2.1.1-Ubuntu-daemon.tgz"
+TRTTVERSION="2.1.1"
 
 #!/bin/bash
 
@@ -37,11 +37,11 @@ clear
 
 echo "
 
-  ------- TRITTIUM MASTERNODE INSTALLER v2 -------+
+  ------- TRITTIUM MASTERNODE INSTALLER v2.1.1------+
  |                                                  |
  |                                                  |::
  |       The installation will install and run      |::
- |        the masternode under a user tritt.     |::
+ |        the masternode under a user tritt.        |::
  |                                                  |::
  |        This version of installer will setup      |::
  |           fail2ban and ufw for your safety.      |::
@@ -81,17 +81,28 @@ apt-get -qq upgrade
 apt-get -qq autoremove
 apt-get -qq install wget htop unzip
 apt-get -qq install build-essential && apt-get -qq install libtool libevent-pthreads-2.0-5 autotools-dev autoconf automake && apt-get -qq install libssl-dev && apt-get -qq install libboost-all-dev && apt-get -qq install software-properties-common && add-apt-repository -y ppa:bitcoin/bitcoin && apt update && apt-get -qq install libdb4.8-dev && apt-get -qq install libdb4.8++-dev && apt-get -qq install libminiupnpc-dev && apt-get -qq install libqt4-dev libprotobuf-dev protobuf-compiler && apt-get -qq install libqrencode-dev && apt-get -qq install git && apt-get -qq install pkg-config && apt-get -qq install libzmq3-dev
-apt-get -qq install aptitude
+if ! which aptitude &>/dev/null; then
+  echo 'Aptitude not found, installing'
+  apt-get -qq install aptitude
+fi
 
+if ! service fail2ban status | grep "Loaded: loaded" &>/dev/null; then
+  echo 'Fail2Ban not installed, installing'
   aptitude -y -q install fail2ban
   service fail2ban restart
+fi
 
+if ! which ufw &>/dev/null; then
+  echo 'ufw not installed, installing'
   apt-get -qq install ufw
+  echo 'configuring ufw'
   ufw default deny incoming
   ufw default allow outgoing
   ufw allow ssh
   ufw allow 30001/tcp
+  echo 'enabling ufw'
   yes | ufw enable
+fi
 
 # Install Trittium daemon
 #wget $TARBALLURL && unzip $TARBALLNAME -d $USERHOME/  && rm $TARBALLNAME
@@ -136,6 +147,7 @@ listen=1
 server=1
 daemon=1
 maxconnections=256
+rpcport=30002
 masternodeaddr=${EXTERNALIP}:30001
 masternodeprivkey=${KEY}
 masternode=1
