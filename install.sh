@@ -133,7 +133,7 @@ mkdir $USERHOME/.trittium2
 #EOL
 #sudo systemctl enable trittiumd
 #sudo systemctl stop trittiumd
-su - $USER -c trittium-cli stop
+killall tritt*
 sleep 6
 
 
