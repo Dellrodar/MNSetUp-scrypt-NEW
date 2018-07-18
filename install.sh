@@ -159,7 +159,7 @@ sleep 1
 
 
 #sudo systemctl start trittiumd
-su - $USER -c "trittiumd"
+su -c "trittiumd -daemon" tritt
 
 clear
 
