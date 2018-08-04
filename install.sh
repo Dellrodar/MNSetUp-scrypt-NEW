@@ -21,6 +21,7 @@ if [[ `free -m | awk '/^Mem:/{print $2}'` -lt 850 ]]; then
   exit 1
 fi
 
+
 # Install tools for dig and systemctl
 echo "Preparing installation..."
 apt-get install git dnsutils systemd -y > /dev/null 2>&1
@@ -36,19 +37,17 @@ EXTERNALIP=`dig +short myip.opendns.com @resolver1.opendns.com`
 clear
 
 echo "
-
-  ------- TRITTIUM MASTERNODE INSTALLER v2.1.1------+
+  ------- TRITTIUM MASTERNODE INSTALLER v2.1.1--------+
  |                                                  |
  |                                                  |::
  |       The installation will install and run      |::
- |        the masternode under a user tritt.        |::
+ |        the masternode under a user tritt.     |::
  |                                                  |::
  |        This version of installer will setup      |::
  |           fail2ban and ufw for your safety.      |::
  |                                                  |::
  +------------------------------------------------+::
    ::::::::::::::::::::::::::::::::::::::::::::::::::
-
 "
 
 sleep 5
@@ -81,28 +80,17 @@ apt-get -qq upgrade
 apt-get -qq autoremove
 apt-get -qq install wget htop unzip
 apt-get -qq install build-essential && apt-get -qq install libtool libevent-pthreads-2.0-5 autotools-dev autoconf automake && apt-get -qq install libssl-dev && apt-get -qq install libboost-all-dev && apt-get -qq install software-properties-common && add-apt-repository -y ppa:bitcoin/bitcoin && apt update && apt-get -qq install libdb4.8-dev && apt-get -qq install libdb4.8++-dev && apt-get -qq install libminiupnpc-dev && apt-get -qq install libqt4-dev libprotobuf-dev protobuf-compiler && apt-get -qq install libqrencode-dev && apt-get -qq install git && apt-get -qq install pkg-config && apt-get -qq install libzmq3-dev
-if ! which aptitude &>/dev/null; then
-  echo 'Aptitude not found, installing'
-  apt-get -qq install aptitude
-fi
+apt-get -qq install aptitude
 
-if ! service fail2ban status | grep "Loaded: loaded" &>/dev/null; then
-  echo 'Fail2Ban not installed, installing'
   aptitude -y -q install fail2ban
   service fail2ban restart
-fi
 
-if ! which ufw &>/dev/null; then
-  echo 'ufw not installed, installing'
   apt-get -qq install ufw
-  echo 'configuring ufw'
   ufw default deny incoming
   ufw default allow outgoing
   ufw allow ssh
   ufw allow 30001/tcp
-  echo 'enabling ufw'
   yes | ufw enable
-fi
 
 # Install Trittium daemon
 #wget $TARBALLURL && unzip $TARBALLNAME -d $USERHOME/  && rm $TARBALLNAME
@@ -178,16 +166,12 @@ done
 clear
 
 cat << EOL
-
 Now, you need to start your masternode. Please go to your desktop wallet and
 add next string to masternode.cogf file:
 MN ${EXTERNALIP}:30001 [50k desposit transaction id. 'masternode outputs'] [50k desposit transaction index. 'masternode outputs']
 Then restart wallet and wait full sync.
-
 enter the following line into your debug console (Tools->Debug console):
 startmasternode "alias" "0" "MN"
-
-
 EOL
 
 read -p "Press Enter to continue after you've done that. " -n1 -s
@@ -201,4 +185,3 @@ su -c "/usr/local/bin/trittium-cli masternode status" $USER
 sleep 5
 
 echo "" && echo "If you see @Masternode successfully started@ - Masternode setup completed." && echo ""
-
