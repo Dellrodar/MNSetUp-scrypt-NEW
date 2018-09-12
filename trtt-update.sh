@@ -8,9 +8,9 @@ fi
 pushd /root
 killall trittiumd
 rm /usr/local/bin/trittium*
-wget https://github.com/Trittium/trittium/releases/download/2.1.1/Trittium-2.1.1-Ubuntu-daemon.tgz
-tar -xvf Trittium-2.1.1-Ubuntu-daemon.tgz -C /usr/local/bin/
-rm Trittium-2.1.1-Ubuntu-daemon.tgz
+wget https://github.com/Trittium/trittium/releases/download/2.2.0.2/Trittium-2.2.0.2-Ubuntu-daemon.tgz
+tar -xvf Trittium-2.2.0.2-Ubuntu-daemon.tgz -C /usr/local/bin/
+rm Trittium-2.2.0.2-Ubuntu-daemon.tgz
 
 if ! which aptitude &>/dev/null; then
   echo 'Aptitude not found, installing'
