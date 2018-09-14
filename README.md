@@ -66,7 +66,7 @@ Your MN started!!
 
 1. Keep your server up to date:
 ```
-sudo apt-get update -y && sudo apt-get upgrade -y
+sudo apt-get update -y && sudo apt-get upgrade -y sudo apt-get dist-upgrade -y
 ```
 
 2. Log in as root: ```sudo su -```
